@@ -17,13 +17,16 @@ function onDeviceReady() {
     else {
         data = JSON.parse(localStorageExist);
         addProperties();
-        displayData();
+        //displayData();
     }
     pages = document.querySelectorAll('[data-role = "page"]');
     links = document.querySelectorAll('[data-role = "nav"] a');
     for (let i = 0; i < links.length; i++) {
         links[i].addEventListener("click", navigate);
     }
+     let refrButton = document.getElementById("buttonRefresh");
+    //    refrButton.addEventListener("click", onDeviceReady);
+    refrButton.addEventListener("click", serverData.getJSON);
 }
 
 function navigate(ev) {
@@ -77,7 +80,7 @@ let serverData = {
             addProperties();
             //            console.log("Before sorting in previous funciton data.teams:");
             //            console.log(data.teams);
-            displayData();
+            
         }).catch(function (err) {
             alert("Error: " + err.message);
         });
@@ -90,6 +93,7 @@ function addProperties() {
         value["numofLos"] = 0;
         value["numofTie"] = 0;
     });
+    displayData();
 }
 
 function displayData() {
@@ -104,9 +108,7 @@ function displayData() {
     //    console.log(myScoreData);
     //  
     //    get our schedule unordered list
-    let refrButton = document.getElementById("buttonRefresh");
-    //    refrButton.addEventListener("click", onDeviceReady);
-    refrButton.addEventListener("click", serverData.getJSON);
+   
     let ul = document.querySelector(".timetable_list");
     ul.innerHTML = ""; //clear existing list items
     //create list items for each match in the schedule

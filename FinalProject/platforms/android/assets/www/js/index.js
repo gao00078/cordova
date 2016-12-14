@@ -43,7 +43,7 @@ function navigate(ev) {
     }
 }
 let serverData = {
-    url: "https://griffis.edumedia.ca/mad9014/sports/basketball.php"
+    url: "https://griffis.edumedia.ca/mad9014/sports/quidditch.php"
     , httpRequest: "GET"
     , getJSON: function () {
         // Add headers and options objects
@@ -123,19 +123,33 @@ function displayData() {
         value.games.forEach(function (item) {
             homeTeam = getTeamName(data.teams, item.home);
             awayTeam = getTeamName(data.teams, item.away);
-            let dg = document.createElement("div");
-            dg.classList.add("onePair");
+            let divOnePair = document.createElement("div");
+            divOnePair.classList.add("onePair");
+            // home team 
             let home = document.createElement("div");
             home.classList.add("homeTm");
-            home.innerHTML = homeTeam + " " + "<b>" + item.home_score + "</b>" + "&nbsp" + "<br>";
-            //            home.innerHTML = homeTeam + " " + "<b>" + item.home_score + "</b>"  + "<br>";
+            let imgHome = document.createElement("img");
+            imgHome.src = getImgSrc(homeTeam);
+            imgHome.classList.add("team-icon");
+            let phome = document.createElement("p");
+            phome.classList.add("pteam");
+            phome.innerHTML = homeTeam + " " + "<b>" + item.home_score + "</b>" + "&nbsp" + "<br>";
+            home.appendChild(imgHome);
+            home.appendChild(phome);
+            // away team           
             let away = document.createElement("div");
             away.classList.add("awayTm");
-            away.innerHTML = "&nbsp" + awayTeam + " " + "<b>" + item.away_score + "</b>" + "&nbsp";
-            //            away.innerHTML = "&nbsp" + awayTeam + " " + "<b>" + item.away_score + "</b>" ;
-            dg.appendChild(home);
-            dg.appendChild(away);
-            ul.appendChild(dg);
+            let imgAway = document.createElement("img");
+            imgAway.src = getImgSrc(awayTeam);
+            imgAway.classList.add("team-icon");
+            let paway = document.createElement("p");
+            paway.classList.add("pteam");
+            paway.innerHTML = "&nbsp" + awayTeam + " " + "<b>" + item.away_score + "</b>" + "&nbsp";
+            away.appendChild(imgAway);
+            away.appendChild(paway);
+            divOnePair.appendChild(home);
+            divOnePair.appendChild(away);
+            ul.appendChild(divOnePair);
             /*calculateNumOfWin  starts*/
             if (item.home_score > item.away_score) {
                 calculateNumOfWin(data.teams, item.home);
@@ -153,6 +167,10 @@ function displayData() {
         });
     });
     data.teams = calcStanding();
+}
+
+function getImgSrc(teamName) {
+    return "img/" + teamName + ".png";
 }
 
 function calculateNumOfWin(teams, id) {
@@ -207,7 +225,25 @@ function calcStanding() {
     for (let i = 0, numOfTm = tempTeams.length; i < numOfTm; i++) {
         let tr = document.createElement("tr");
         let tdn = document.createElement("td");
-        tdn.textContent = tempTeams[i].name;
+        
+        
+        
+        
+        let img = document.createElement("img");
+            img.src = getImgSrc(tempTeams[i].name);
+            img.classList.add("team-icon-standing");
+        let p = document.createElement("p");
+        p.classList.add("p-standing");
+        p.innerHTML = tempTeams[i].name;
+       
+       
+        tdn.appendChild(img);
+        tdn.appendChild(p);
+
+
+        
+        
+//        tdn.textContent = tempTeams[i].name;
         let tdw = document.createElement("td");
         tdw.textContent = tempTeams[i].numofWin;
         let tdl = document.createElement("td");

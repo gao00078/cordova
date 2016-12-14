@@ -158,7 +158,11 @@ div #buttonRefresh {
 
 
 /*Navigation starts here*/
-
+.tab-icon{
+    display: inline;
+    width: 1.5rem;
+    margin-right: 0.5rem;
+}
 [data-role="nav"] {
     position: fixed;
     z-index: 30;
@@ -179,6 +183,7 @@ div #buttonRefresh {
 
 .tabs a {
     display: block;
+    display: inline;
     line-height: 2rem;
     font-size: 1.2rem;
     text-align: center;
@@ -239,9 +244,25 @@ div #buttonRefresh {
     line-height: 2rem;
 }
 
+.team-icon-standing{
+    width: 2rem;
+    float: left;
+    padding-left: 3rem;
+    padding-top: 0.5rem;
+}
+
+
+
+
 /*standing page ends*/
 
 /*Timetable page starts*/
+.timetable_list{
+  
+/*    margin-left: 0;*/
+    padding-left: 1rem;
+/*    border-left: 0.2rem;*/
+}
 
 .timetable_list li {
     list-style: none;
@@ -250,6 +271,8 @@ div #buttonRefresh {
 .timetable_list h3 {
     margin-top: 5rem;
 }
+
+
 
 .onePair{
 /*    border: 0.3px solid #666;*/
@@ -262,7 +285,12 @@ div #buttonRefresh {
     padding: 0.2rem 0 ;
 /*    border: 0.3px solid #666;*/
 }
-
+.team-icon{
+    float: left;
+    width:1rem;
+    padding-top: 0.4rem;
+    padding-right: 0.1rem;
+}
 
 /*Timetable page ends*/
 
